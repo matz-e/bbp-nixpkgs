@@ -641,17 +641,55 @@ in
   };
 
   pyspark = pythonPackages.buildPythonPackage rec {
-    version = "2.2.0";
+    version = "2.2.1";
     name = "pyspark-${version}";
 
     src = pkgs.fetchurl {
-      url = "mirror://pypi/p/pyspark/${name}.post0.tar.gz";
-      sha256 = "0g1slgd24wx3hnkvqxjdd9pcqid5x1yc5pl6kn9i5kh8hq8r9jcx";
+      url = "mirror://pypi/p/pyspark/${name}.tar.gz";
+      sha256 = "1l26rmqn49kw1pk1hm2bxqqp9larv8imd0jbhw4vmwi54ca7z2kb";
     };
 
     propagatedBuildInputs = with self; [
       py4j_0_10_4
       pypandoc
+      setuptools
+    ];
+
+    doCheck = false;
+  };
+
+  sparkmanager = pythonPackages.buildPythonPackage rec {
+    version = "0.5.0";
+    name = "sparkmanager-${version}";
+
+    src = pkgs.fetchurl {
+      url = "mirror://pypi/s/sparkmanager/${name}.tar.gz";
+      sha256 = "1farym2ahsqhb5rzz1cqcj46q1j1ifi8b1fh9fpg60ffrcm4laxk";
+    };
+
+    propagatedBuildInputs = with self; [
+      pyspark
+      setuptools
+      six
+    ];
+
+    doCheck = false;
+  };
+
+  snakebite = pythonPackages.buildPythonPackage rec {
+    version = "2.11.0";
+    name = "snakebite-${version}";
+
+    src = pkgs.fetchurl {
+      url = "mirror://pypi/s/snakebite/${name}.tar.gz";
+      sha256 = "12lpmq2s4934r0n4nl3w6c63vb1nx56pkmb2xrccdfacjjs3hlh8";
+    };
+
+    buildInputs = [ pythonPackages.pip ];
+
+    propagatedBuildInputs = with self; [
+      argparse
+      protobuf
       setuptools
     ];
 

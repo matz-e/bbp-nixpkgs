@@ -3,6 +3,7 @@
 , fetchgitPrivate
 , hdf5
 , pythonPackages
+, spark-bbp
 , stdenv
 }:
 
@@ -20,6 +21,7 @@ let
       requests
       setuptools
       setuptools_scm
+      snakebite
       sparkmanager
       spark-bbp
       sphinx
@@ -34,7 +36,7 @@ in
 
   stdenv.mkDerivation rec {
     name = "spykfunc-${version}";
-    version = "0.5.1";
+    version = "0.8.1";
     meta = {
       description = "New Functionalizer implementation on top of Spark";
       longDescription = ''
@@ -49,16 +51,17 @@ in
       homepage = "https://bbpteam.epfl.ch/project/spaces/display/BBPHPC/Spark+functionalizer";
       repository = "ssh://bbpcode.epfl.ch/building/Functionalizer";
       license = {
-        fullName = "Copyright 2017, Blue Brain Project";
+        fullName = "Copyright 2018, Blue Brain Project";
       };
       maintainers = [
         config.maintainers.ferdonline
+        config.maintainers.matze
       ];
     };
     src = fetchgitPrivate {
       url = config.bbp_git_ssh + "/building/Functionalizer";
-      rev = "79dbd9ea1e8c1d8c14cc808fc1891ee33f3d257a";
-      sha256 = "1dvav0rvhbdwckbjlp53bh1iawfqc90d102y3vw3w75pcb1zypwn";
+      rev = "245363f02b45dbeb2b0a0c9ee2b750541b891df8";
+      sha256 = "0wj26w9y74vmjq8c3a0gzvnx3rrvkbjp95aahsa7dymcbgk2iv8z";
     };
     patches = [] ++ stdenv.lib.optionals (!enum34Required) [
       # old setuptools version does not support environment markers

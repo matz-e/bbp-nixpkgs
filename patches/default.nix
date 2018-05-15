@@ -413,8 +413,8 @@ let
           sparkOrigin = spark;
         };
 
-
-
+        hadoop-bbp = callPackage ./hadoop {
+        };
     };
 
     additionalPythonPackages = MergePkgs.callPackage ./additionalPythonPackages ({
