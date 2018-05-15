@@ -20,6 +20,8 @@ let
       requests
       setuptools
       setuptools_scm
+      sparkmanager
+      spark-bbp
       sphinx
       sphinx_rtd_theme
     ]

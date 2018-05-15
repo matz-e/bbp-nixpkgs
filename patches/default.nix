@@ -409,6 +409,10 @@ let
 		inherit arrow;
         };
 
+        spark-bbp = callPackage ./spark {
+          sparkOrigin = spark;
+        };
+
 
 
     };
